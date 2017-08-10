@@ -1,18 +1,23 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import seedStudents from '../actions/students/seed'
+import updateStudent from '../actions/students/update'
 import Title from '../components/Title'
 import Student from './Student'
 import './StudentsContainer.css'
 
-class StudentsContainer extends PureComponent {
+export class StudentsContainer extends PureComponent {
    static PropTypes = {
      students: PropTypes.array.isRequired,
-     updateStudent: PropTypes.func.isRequired,
+     seedStudents: PropTypes.func.isRequired,
    }
 
-   renderStudent(student, index) {
-     const { updateStudent } = this.props
+   componentWillMount() {
+     this.props.seedStudents()
+   }
 
+    renderStudent(student, index) {
      return <Student
        key={index}
        onChange={updateStudent}
@@ -34,4 +39,11 @@ class StudentsContainer extends PureComponent {
    }
  }
 
- export default StudentsContainer
+ // export default StudentsContainer
+ const mapStateToProps = (store) => {
+   return {
+     students: store.students
+   }
+ }
+
+ export default connect(mapStateToProps, { seedStudents })(StudentsContainer)

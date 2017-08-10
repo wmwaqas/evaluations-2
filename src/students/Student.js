@@ -1,11 +1,13 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import updateStudent from '../actions/students/update'
 import './Student.css'
 
 const PLACEHOLDER = 'http://via.placeholder.com/500x180?text=No%20Image'
 
 
- class Student extends PureComponent {
+ export class Student extends PureComponent {
    static PropTypes = {
      _id: PropTypes.string.isRequired,
      name: PropTypes.string.isRequired,
@@ -31,7 +33,8 @@ const PLACEHOLDER = 'http://via.placeholder.com/500x180?text=No%20Image'
    }
  }
 
- export default Student
+export default connect(null, { onChange: updateStudent })(Student)
+ // export default Student
 
  // <h1>{ name }</h1>
  // <div>
