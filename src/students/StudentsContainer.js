@@ -5,6 +5,7 @@ import seedStudents from '../actions/students/seed'
 import updateStudent from '../actions/students/update'
 import Title from '../components/Title'
 import Student from './Student'
+import StudentEditor from './StudentEditor'
 import './StudentsContainer.css'
 
 export class StudentsContainer extends PureComponent {
@@ -29,6 +30,7 @@ export class StudentsContainer extends PureComponent {
        <div className="students wrapper">
          <header>
            <Title content="Batch-1" />
+           <StudentEditor />
          </header>
 
          <main>

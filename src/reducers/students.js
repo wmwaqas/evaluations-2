@@ -1,10 +1,14 @@
 import { SEED_STUDENTS } from '../actions/students/seed'
 import { UPDATE_STUDENT } from '../actions/students/update'
+import { CREATE_STUDENT } from '../actions/students/create'
 
 export default (state = [], { type, payload } = {}) => {
   switch (type) {
     case SEED_STUDENTS :
       return [].concat(payload)
+
+    case CREATE_STUDENT :
+      return [Object.assign({}, payload)].concat(state)
 
     case UPDATE_STUDENT :
       const { _id, updates } = payload
