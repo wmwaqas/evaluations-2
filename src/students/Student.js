@@ -2,6 +2,9 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import './Student.css'
 
+const PLACEHOLDER = 'http://via.placeholder.com/500x180?text=No%20Image'
+
+
  class Student extends PureComponent {
    static PropTypes = {
      _id: PropTypes.string.isRequired,
@@ -17,15 +20,22 @@ import './Student.css'
 
      return(
        <article className="Student">
-         <h1>{ name }</h1>
-         <div>
-           <ul>
-             { photo && <li><img className="Student-Photo" src={photo} alt="Photo" /></li> }
-           </ul>
-         </div>
+       <header>
+           <div
+             className="cover"
+             style={{ backgroundImage: `url(${photo || PLACEHOLDER })` }} />
+           <h1>{ name }</h1>
+        </header>
        </article>
      )
    }
  }
 
  export default Student
+
+ // <h1>{ name }</h1>
+ // <div>
+ //   <ul>
+ //     { photo && <li><img className="Student-Photo" src={photo} alt="Photo" /></li> }
+ //   </ul>
+ // </div>

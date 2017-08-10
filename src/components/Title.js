@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import './Title.css'
 
 export default class Title extends PureComponent {
   static PropTypes = {
@@ -8,7 +9,8 @@ export default class Title extends PureComponent {
 
    render() {
      return (
-       <h1>{ this.props.content }</h1>
+       <h1 className="Title">{ this.props.content }</h1>
+
      )
    }
  }
