@@ -1,10 +1,10 @@
-import { SEED_STUDENTS } from '../actions/students/seed'
+import { FETCHED_STUDENTS } from '../actions/students/fetch'
 import { UPDATE_STUDENT } from '../actions/students/update'
 import { CREATE_STUDENT } from '../actions/students/create'
 
 export default (state = [], { type, payload } = {}) => {
   switch (type) {
-    case SEED_STUDENTS :
+    case FETCHED_STUDENTS :
       return [].concat(payload)
 
     case CREATE_STUDENT :

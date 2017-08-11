@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import seedStudents from '../actions/students/seed'
+import fetchStudents from '../actions/students/fetch'
 import updateStudent from '../actions/students/update'
 import Title from '../components/Title'
 import Student from './Student'
@@ -11,11 +11,11 @@ import './StudentsContainer.css'
 export class StudentsContainer extends PureComponent {
    static PropTypes = {
      students: PropTypes.array.isRequired,
-     seedStudents: PropTypes.func.isRequired,
+     fetchStudents: PropTypes.func.isRequired,
    }
 
    componentWillMount() {
-     this.props.seedStudents()
+     this.props.fetchStudents()
    }
 
     renderStudent(student, index) {
@@ -48,4 +48,4 @@ export class StudentsContainer extends PureComponent {
    }
  }
 
- export default connect(mapStateToProps, { seedStudents })(StudentsContainer)
+ export default connect(mapStateToProps, { fetchStudents })(StudentsContainer)
