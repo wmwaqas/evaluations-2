@@ -17,6 +17,7 @@ class StudentEditor extends PureComponent {
      this.state = {
        name,
        photo,
+       errors: {}
      }
    }
 
@@ -36,21 +37,43 @@ class StudentEditor extends PureComponent {
      })
    }
 
-   saveStudent() {
+   studentState() {
      const {
        name,
        photo,
      } = this.state
 
-     const student = {
+     return {
        name,
        photo,
      }
-
-     this.props.createStudent(student)
    }
 
+   isValid() {
+    const student = this.studentState()
+
+    let errors = {}
+
+    if (!student.name) errors.name = 'Please provide a name!'
+    if (!student.photo) errors.photo = 'Please provide a photo URL!'
+
+    this.setState({ errors })
+
+     return Object.keys(errors).length === 0
+   }
+
+   saveStudent() {
+     if (!this.isValid()) return
+
+     const student = this.studentState()
+
+     this.props.createStudent(
+       Object.assign({}, student ))
+    }
+
    render() {
+     const { errors } = this.state
+
      return (
        <div className="editor">
          <input
@@ -61,6 +84,7 @@ class StudentEditor extends PureComponent {
            defaultValue={this.state.name}
            onChange={this.updateName.bind(this)}
            onKeyDown={this.updateName.bind(this)} />
+           <p>{errors.name}</p>
 
          <input
            type="text"
@@ -70,6 +94,7 @@ class StudentEditor extends PureComponent {
            defaultValue={this.state.photo}
            onChange={this.updatePhoto.bind(this)}
            onKeyDown={this.updatePhoto.bind(this)} />
+           <p>{errors.photo}</p>
 
 
          <div className="actions">
