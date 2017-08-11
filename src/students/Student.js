@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import updateStudent from '../actions/students/update'
 import './Student.css'
 
@@ -18,7 +19,7 @@ const PLACEHOLDER = 'http://via.placeholder.com/500x180?text=No%20Image'
    }
 
    render() {
-     const { name, photo, red, yellow, green } = this.props
+     const { _id, name, photo, red, yellow, green } = this.props
 
      return(
        <article className="Student">
@@ -26,7 +27,9 @@ const PLACEHOLDER = 'http://via.placeholder.com/500x180?text=No%20Image'
            <div
              className="cover"
              style={{ backgroundImage: `url(${photo || PLACEHOLDER })` }} />
-           <h1>{ name }</h1>
+           <h1>
+           <Link to={`/students/${_id}`}>{ name }</Link>
+           </h1>
         </header>
        </article>
      )
