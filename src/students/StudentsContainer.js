@@ -6,6 +6,7 @@ import updateStudent from '../actions/students/update'
 import Title from '../components/Title'
 import Student from './Student'
 import StudentEditor from './StudentEditor'
+import subscribeToStudentsService from '../actions/students/subscribe'
 import './StudentsContainer.css'
 
 export class StudentsContainer extends PureComponent {
@@ -16,6 +17,7 @@ export class StudentsContainer extends PureComponent {
 
    componentWillMount() {
      this.props.fetchStudents()
+     this.props.subscribeToStudentsService()
    }
 
     renderStudent(student, index) {
@@ -48,4 +50,4 @@ export class StudentsContainer extends PureComponent {
    }
  }
 
- export default connect(mapStateToProps, { fetchStudents })(StudentsContainer)
+ export default connect(mapStateToProps, { fetchStudents, subscribeToStudentsService })(StudentsContainer)
